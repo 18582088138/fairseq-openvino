@@ -213,7 +213,6 @@ class TransformerDecoderBase(FairseqIncrementalDecoder):
                 - the decoder's output of shape `(batch, tgt_len, vocab)`
                 - a dictionary with any model-specific outputs
         """
-
         x, extra = self.extract_features(
             prev_output_tokens,
             encoder_out=encoder_out,
@@ -337,6 +336,7 @@ class TransformerDecoderBase(FairseqIncrementalDecoder):
             else:
                 self_attn_mask = None
 
+            # print(f"x={type(idx)}, alignment_layer={type(alignment_layer)}")
             x, layer_attn, _ = layer(
                 x,
                 enc,

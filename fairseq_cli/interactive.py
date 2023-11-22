@@ -133,7 +133,7 @@ def main(cfg: FairseqConfig):
     if cfg.common.seed is not None and not cfg.generation.no_seed_provided:
         np.random.seed(cfg.common.seed)
         utils.set_torch_seed(cfg.common.seed)
-
+    cfg.common.cpu=1
     use_cuda = torch.cuda.is_available() and not cfg.common.cpu
 
     # Setup task, e.g., translation
@@ -306,7 +306,6 @@ def main(cfg: FairseqConfig):
             time.time() - start_time, total_translate_time
         )
     )
-
 
 def cli_main():
     parser = options.get_interactive_generation_parser()
